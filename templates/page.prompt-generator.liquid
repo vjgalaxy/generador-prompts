@@ -1,0 +1,454 @@
+<div class="page-width">
+  <header class="section-header text-center">
+    <h1 class="section-header__title h2">{{ page.title }}</h1>
+  </header>
+
+  <div class="grid">
+    <div class="grid__item medium-up--four-fifths medium-up--push-one-tenth">
+      <div class="rte rte--contact">
+        {{ page.content }}
+      </div>
+
+      {{ 'prompt-generator.css' | asset_url | stylesheet_tag }}
+
+      <div id="prompt-generator-app">
+        <div class="container">
+          <form id="promptForm">
+            <div class="form-grid">
+              <!-- Framing -->
+              <div class="form-group">
+                <label for="encuadre">📐 Framing / Shot Size</label>
+                <select id="encuadre">
+                  <option value="">-- Select --</option>
+                  <option value="extreme close-up">Extreme Close-Up</option>
+                  <option value="close-up">Close-Up</option>
+                  <option value="medium close-up">Medium Close-Up</option>
+                  <option value="medium shot">Medium Shot</option>
+                  <option value="medium full shot">Medium Full Shot</option>
+                  <option value="full shot">Full Shot</option>
+                  <option value="long shot">Long Shot</option>
+                  <option value="extreme long shot">Extreme Long Shot</option>
+                  <option value="establishing shot">Establishing Shot</option>
+                  <option value="two-shot">Two-Shot</option>
+                  <option value="over-the-shoulder">Over-the-Shoulder</option>
+                  <option value="point of view shot">Point of View Shot</option>
+                  <option value="insert shot">Insert Shot</option>
+                </select>
+              </div>
+
+              <!-- Camera Angle -->
+              <div class="form-group">
+                <label for="angulo">📹 Camera Angle</label>
+                <select id="angulo">
+                  <option value="">-- Select --</option>
+                  <option value="eye level">Eye Level</option>
+                  <option value="high angle">High Angle</option>
+                  <option value="low angle">Low Angle</option>
+                  <option value="bird's eye view">Bird's Eye View</option>
+                  <option value="worm's eye view">Worm's Eye View</option>
+                  <option value="dutch angle">Dutch Angle</option>
+                  <option value="overhead shot">Overhead Shot</option>
+                  <option value="aerial view">Aerial View</option>
+                  <option value="ground level">Ground Level</option>
+                  <option value="shoulder level">Shoulder Level</option>
+                  <option value="hip level">Hip Level</option>
+                </select>
+              </div>
+
+              <!-- Atmosphere -->
+              <div class="form-group">
+                <label for="atmosfera">🌫️ Atmosphere</label>
+                <select id="atmosfera" onchange="mostrarSugerencias()">
+                  <option value="">-- Select --</option>
+                  <option value="mysterious atmosphere">Mysterious</option>
+                  <option value="tense atmosphere">Tense</option>
+                  <option value="suspenseful atmosphere">Suspenseful</option>
+                  <option value="romantic atmosphere">Romantic</option>
+                  <option value="melancholic atmosphere">Melancholic</option>
+                  <option value="nostalgic atmosphere">Nostalgic</option>
+                  <option value="dreamy atmosphere">Dreamy</option>
+                  <option value="ethereal atmosphere">Ethereal</option>
+                  <option value="haunting atmosphere">Haunting</option>
+                  <option value="ominous atmosphere">Ominous</option>
+                  <option value="eerie atmosphere">Eerie</option>
+                  <option value="serene atmosphere">Serene</option>
+                  <option value="peaceful atmosphere">Peaceful</option>
+                  <option value="chaotic atmosphere">Chaotic</option>
+                  <option value="energetic atmosphere">Energetic</option>
+                  <option value="oppressive atmosphere">Oppressive</option>
+                  <option value="claustrophobic atmosphere">Claustrophobic</option>
+                  <option value="liberating atmosphere">Liberating</option>
+                  <option value="intimate atmosphere">Intimate</option>
+                  <option value="epic atmosphere">Epic</option>
+                  <option value="dystopian atmosphere">Dystopian</option>
+                  <option value="utopian atmosphere">Utopian</option>
+                  <option value="surreal atmosphere">Surreal</option>
+                  <option value="gritty atmosphere">Gritty</option>
+                  <option value="whimsical atmosphere">Whimsical</option>
+                </select>
+                <!-- Lighting Suggestions Box -->
+                <div class="suggestions-box" id="suggestionsBox">
+                  <div class="suggestions-title">
+                    <span>💡</span>
+                    <span>Recommended Lighting for this Atmosphere</span>
+                  </div>
+                  <div class="suggestions-content" id="suggestionsContent">
+                    <!-- Suggestions will be generated here -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Lighting -->
+              <div class="form-group">
+                <label for="iluminacion">💡 Lighting</label>
+                <select id="iluminacion">
+                  <option value="">-- Select --</option>
+                  <option value="natural lighting">Natural Lighting</option>
+                  <option value="golden hour">Golden Hour</option>
+                  <option value="blue hour">Blue Hour</option>
+                  <option value="three-point lighting">Three-Point Lighting</option>
+                  <option value="key lighting">Key Lighting</option>
+                  <option value="high key lighting">High Key Lighting</option>
+                  <option value="low key lighting">Low Key Lighting</option>
+                  <option value="rembrandt lighting">Rembrandt Lighting</option>
+                  <option value="butterfly lighting">Butterfly Lighting</option>
+                  <option value="rim lighting">Rim Lighting</option>
+                  <option value="backlighting">Backlighting</option>
+                  <option value="side lighting">Side Lighting</option>
+                  <option value="soft lighting">Soft Lighting</option>
+                  <option value="hard lighting">Hard Lighting</option>
+                  <option value="chiaroscuro">Chiaroscuro</option>
+                  <option value="silhouette lighting">Silhouette Lighting</option>
+                  <option value="volumetric lighting">Volumetric Lighting</option>
+                  <option value="practical lighting">Practical Lighting</option>
+                  <option value="motivated lighting">Motivated Lighting</option>
+                  <option value="neon lighting">Neon Lighting</option>
+                  <option value="candlelight">Candlelight</option>
+                  <option value="firelight">Firelight</option>
+                  <option value="moonlight">Moonlight</option>
+                  <option value="dappled light">Dappled Light</option>
+                </select>
+              </div>
+
+              <!-- Camera Movement -->
+              <div class="form-group">
+                <label for="movimiento">🎥 Camera Movement</label>
+                <select id="movimiento">
+                  <option value="">-- Select --</option>
+                  <option value="static shot">Static Shot</option>
+                  <option value="pan left">Pan Left</option>
+                  <option value="pan right">Pan Right</option>
+                  <option value="tilt up">Tilt Up</option>
+                  <option value="tilt down">Tilt Down</option>
+                  <option value="dolly in">Dolly In</option>
+                  <option value="dolly out">Dolly Out</option>
+                  <option value="tracking shot">Tracking Shot</option>
+                  <option value="crane shot">Crane Shot</option>
+                  <option value="steadicam">Steadicam</option>
+                  <option value="handheld">Handheld</option>
+                  <option value="shaky cam">Shaky Cam</option>
+                  <option value="whip pan">Whip Pan</option>
+                  <option value="zoom in">Zoom In</option>
+                  <option value="zoom out">Zoom Out</option>
+                  <option value="dolly zoom">Dolly Zoom</option>
+                  <option value="push in">Push In</option>
+                  <option value="pull back">Pull Back</option>
+                  <option value="circular tracking">Circular Tracking</option>
+                  <option value="arc shot">Arc Shot</option>
+                  <option value="boom up">Boom Up</option>
+                  <option value="boom down">Boom Down</option>
+                  <option value="floating camera">Floating Camera</option>
+                  <option value="orbital shot">Orbital Shot</option>
+                </select>
+              </div>
+
+              <!-- Mood / Setting -->
+              <div class="form-group">
+                <label for="ambiente">🎭 Mood / Setting</label>
+                <select id="ambiente">
+                  <option value="">-- Select --</option>
+                  <option value="noir mood">Noir</option>
+                  <option value="cyberpunk aesthetic">Cyberpunk</option>
+                  <option value="steampunk aesthetic">Steampunk</option>
+                  <option value="gothic mood">Gothic</option>
+                  <option value="baroque aesthetic">Baroque</option>
+                  <option value="minimalist aesthetic">Minimalist</option>
+                  <option value="maximalist aesthetic">Maximalist</option>
+                  <option value="vintage mood">Vintage</option>
+                  <option value="retro aesthetic">Retro</option>
+                  <option value="futuristic mood">Futuristic</option>
+                  <option value="post-apocalyptic">Post-Apocalyptic</option>
+                  <option value="war-torn environment">War-Torn</option>
+                  <option value="industrial setting">Industrial</option>
+                  <option value="organic environment">Organic</option>
+                  <option value="urban setting">Urban</option>
+                  <option value="rural setting">Rural</option>
+                  <option value="tropical mood">Tropical</option>
+                  <option value="arctic environment">Arctic</option>
+                  <option value="desert atmosphere">Desert</option>
+                  <option value="underwater setting">Underwater</option>
+                  <option value="celestial environment">Celestial</option>
+                  <option value="hellish landscape">Hellish</option>
+                  <option value="heavenly setting">Heavenly</option>
+                  <option value="liminal spaces">Liminal Spaces</option>
+                  <option value="brutalist architecture">Brutalist</option>
+                </select>
+              </div>
+
+              <!-- Color Palette -->
+              <div class="form-group">
+                <label for="color">🎨 Color Palette</label>
+                <select id="color">
+                  <option value="">-- Select --</option>
+                  <option value="monochromatic">Monochromatic</option>
+                  <option value="black and white">Black and White</option>
+                  <option value="sepia tone">Sepia Tone</option>
+                  <option value="warm color palette">Warm Colors</option>
+                  <option value="cool color palette">Cool Colors</option>
+                  <option value="desaturated colors">Desaturated</option>
+                  <option value="oversaturated colors">Oversaturated</option>
+                  <option value="pastel colors">Pastel Colors</option>
+                  <option value="vibrant colors">Vibrant Colors</option>
+                  <option value="neon colors">Neon Colors</option>
+                  <option value="earth tones">Earth Tones</option>
+                  <option value="jewel tones">Jewel Tones</option>
+                  <option value="complementary colors">Complementary Colors</option>
+                  <option value="analogous colors">Analogous Colors</option>
+                  <option value="split-complementary">Split-Complementary</option>
+                  <option value="triadic color scheme">Triadic</option>
+                  <option value="amber-teal palette">Amber-Teal</option>
+                  <option value="blue-orange contrast">Blue-Orange Contrast</option>
+                </select>
+              </div>
+
+              <!-- Era / Period -->
+              <div class="form-group">
+                <label for="epoca">📅 Era / Period</label>
+                <select id="epoca">
+                  <option value="">-- Select --</option>
+                  <option value="contemporary">Contemporary</option>
+                  <option value="1920s aesthetic">1920s</option>
+                  <option value="1950s aesthetic">1950s</option>
+                  <option value="1960s aesthetic">1960s</option>
+                  <option value="1970s aesthetic">1970s</option>
+                  <option value="1980s aesthetic">1980s</option>
+                  <option value="1990s aesthetic">1990s</option>
+                  <option value="victorian era">Victorian Era</option>
+                  <option value="medieval period">Medieval Period</option>
+                  <option value="renaissance period">Renaissance</option>
+                  <option value="ancient times">Ancient Times</option>
+                  <option value="far future">Far Future</option>
+                  <option value="near future">Near Future</option>
+                </select>
+              </div>
+
+              <!-- Texture / Grain -->
+              <div class="form-group">
+                <label for="textura">🎞️ Texture / Grain</label>
+                <select id="textura">
+                  <option value="">-- Select --</option>
+                  <option value="35mm film grain">35mm Film Grain</option>
+                  <option value="16mm film grain">16mm Film Grain</option>
+                  <option value="super 8 film texture">Super 8 Film Texture</option>
+                  <option value="grainy texture">Grainy</option>
+                  <option value="smooth texture">Smooth</option>
+                  <option value="crisp digital">Crisp Digital</option>
+                  <option value="film emulsion">Film Emulsion</option>
+                  <option value="vhs tape aesthetic">VHS Tape Aesthetic</option>
+                  <option value="scratched film">Scratched Film</option>
+                  <option value="clean footage">Clean Footage</option>
+                </select>
+              </div>
+
+              <!-- Depth of Field -->
+              <div class="form-group">
+                <label for="profundidad">🔍 Depth of Field</label>
+                <select id="profundidad">
+                  <option value="">-- Select --</option>
+                  <option value="shallow depth of field">Shallow</option>
+                  <option value="deep depth of field">Deep</option>
+                  <option value="rack focus">Rack Focus</option>
+                  <option value="selective focus">Selective Focus</option>
+                  <option value="bokeh background">Bokeh Background</option>
+                  <option value="sharp focus throughout">Sharp Throughout</option>
+                  <option value="soft focus">Soft Focus</option>
+                  <option value="tilt-shift effect">Tilt-Shift Effect</option>
+                </select>
+              </div>
+
+              <!-- Speed / Temporality -->
+              <div class="form-group">
+                <label for="velocidad">⏱️ Speed / Temporality</label>
+                <select id="velocidad">
+                  <option value="">-- Select --</option>
+                  <option value="real-time">Real-Time</option>
+                  <option value="slow motion">Slow Motion</option>
+                  <option value="extreme slow motion">Extreme Slow Motion</option>
+                  <option value="time-lapse">Time-Lapse</option>
+                  <option value="hyper-lapse">Hyper-Lapse</option>
+                  <option value="fast motion">Fast Motion</option>
+                  <option value="freeze frame">Freeze Frame</option>
+                  <option value="bullet time">Bullet Time</option>
+                  <option value="ramping speed">Ramping Speed</option>
+                </select>
+              </div>
+
+              <!-- Weather Conditions -->
+              <div class="form-group">
+                <label for="clima">🌤️ Weather Conditions</label>
+                <select id="clima">
+                  <option value="">-- Select --</option>
+                  <option value="clear weather">Clear</option>
+                  <option value="overcast sky">Overcast</option>
+                  <option value="heavy rain">Heavy Rain</option>
+                  <option value="light drizzle">Light Drizzle</option>
+                  <option value="thunderstorm">Thunderstorm</option>
+                  <option value="fog">Fog</option>
+                  <option value="mist">Mist</option>
+                  <option value="snow">Snow</option>
+                  <option value="blizzard">Blizzard</option>
+                  <option value="haze">Haze</option>
+                  <option value="dust storm">Dust Storm</option>
+                  <option value="windy conditions">Windy</option>
+                  <option value="stormy weather">Stormy</option>
+                </select>
+              </div>
+
+              <!-- Post-Effects -->
+              <div class="form-group">
+                <label for="postfx">✨ Post-Effects / Visual Style</label>
+                <select id="postfx">
+                  <option value="">-- Select --</option>
+                  <option value="cel shading">Cel Shading</option>
+                  <option value="toon shading">Toon Shading</option>
+                  <option value="comic book style">Comic Book Style</option>
+                  <option value="rotoscope effect">Rotoscope Effect</option>
+                  <option value="film grain overlay">Film Grain Overlay</option>
+                  <option value="chromatic aberration">Chromatic Aberration</option>
+                  <option value="lens flare">Lens Flare</option>
+                  <option value="light leaks">Light Leaks</option>
+                  <option value="vignette effect">Vignette Effect</option>
+                  <option value="bloom effect">Bloom Effect</option>
+                  <option value="god rays">God Rays</option>
+                  <option value="lens distortion">Lens Distortion</option>
+                  <option value="motion blur">Motion Blur</option>
+                  <option value="depth of field blur">Depth of Field Blur</option>
+                  <option value="color grading">Color Grading</option>
+                  <option value="high contrast">High Contrast</option>
+                  <option value="low contrast">Low Contrast</option>
+                  <option value="posterization">Posterization</option>
+                  <option value="pixelation">Pixelation</option>
+                  <option value="glitch effect">Glitch Effect</option>
+                  <option value="datamosh">Datamosh</option>
+                  <option value="vhs aesthetic">VHS Aesthetic</option>
+                  <option value="crt screen effect">CRT Screen Effect</option>
+                  <option value="scanlines">Scanlines</option>
+                  <option value="halftone effect">Halftone Effect</option>
+                  <option value="cross-process">Cross-Process</option>
+                  <option value="bleach bypass">Bleach Bypass</option>
+                  <option value="infrared photography">Infrared Photography</option>
+                  <option value="thermal imaging">Thermal Imaging</option>
+                  <option value="x-ray effect">X-Ray Effect</option>
+                  <option value="solarization">Solarization</option>
+                  <option value="double exposure">Double Exposure</option>
+                  <option value="lens orbs">Lens Orbs</option>
+                  <option value="anamorphic flares">Anamorphic Flares</option>
+                  <option value="film burn">Film Burn</option>
+                  <option value="light trails">Light Trails</option>
+                  <option value="star filter">Star Filter</option>
+                  <option value="soft focus">Soft Focus</option>
+                  <option value="edge detection">Edge Detection</option>
+                  <option value="sketch effect">Sketch Effect</option>
+                </select>
+              </div>
+
+              <!-- Actions -->
+              <div class="form-group">
+                <label for="accion">🎬 Actions</label>
+                <select id="accion">
+                  <option value="">-- Select --</option>
+                  <option value="walking towards camera">Walking Towards Camera</option>
+                  <option value="walking away from camera">Walking Away from Camera</option>
+                  <option value="running towards camera">Running Towards Camera</option>
+                  <option value="running away">Running Away</option>
+                  <option value="standing still">Standing Still</option>
+                  <option value="sitting down">Sitting Down</option>
+                  <option value="getting up">Getting Up</option>
+                  <option value="turning around">Turning Around</option>
+                  <option value="looking back">Looking Back</option>
+                  <option value="looking up">Looking Up</option>
+                  <option value="looking down">Looking Down</option>
+                  <option value="reaching out">Reaching Out</option>
+                  <option value="pointing">Pointing</option>
+                  <option value="dancing">Dancing</option>
+                  <option value="jumping">Jumping</option>
+                  <option value="falling">Falling</option>
+                  <option value="climbing">Climbing</option>
+                  <option value="crawling">Crawling</option>
+                  <option value="spinning">Spinning</option>
+                  <option value="leaning">Leaning</option>
+                  <option value="crouching">Crouching</option>
+                  <option value="kneeling">Kneeling</option>
+                  <option value="lying down">Lying Down</option>
+                  <option value="floating">Floating</option>
+                  <option value="flying">Flying</option>
+                  <option value="fighting">Fighting</option>
+                  <option value="embracing">Embracing</option>
+                  <option value="waving">Waving</option>
+                  <option value="gesturing">Gesturing</option>
+                  <option value="smoking">Smoking</option>
+                  <option value="drinking">Drinking</option>
+                  <option value="eating">Eating</option>
+                  <option value="reading">Reading</option>
+                  <option value="writing">Writing</option>
+                  <option value="typing">Typing</option>
+                  <option value="talking">Talking</option>
+                  <option value="shouting">Shouting</option>
+                  <option value="whispering">Whispering</option>
+                  <option value="laughing">Laughing</option>
+                  <option value="crying">Crying</option>
+                  <option value="sleeping">Sleeping</option>
+                  <option value="waking up">Waking Up</option>
+                  <option value="stretching">Stretching</option>
+                  <option value="exercising">Exercising</option>
+                  <option value="meditating">Meditating</option>
+                  <option value="praying">Praying</option>
+                  <option value="driving">Driving</option>
+                  <option value="riding">Riding</option>
+                  <option value="swimming">Swimming</option>
+                  <option value="diving">Diving</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Main Subject -->
+            <div class="subject-section">
+              <div class="form-group">
+                <label for="sujeto">✨ Main Subject</label>
+                <textarea
+                  id="sujeto"
+                  placeholder="Describe your shot subject (e.g.: young woman walking down the street, futuristic robot, mountain landscape at dawn...)"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+              <button type="button" class="generate-btn" onclick="generarPrompt()">Generate Prompt</button>
+              <button type="button" class="reset-btn" onclick="resetearFormulario()">Reset</button>
+            </div>
+          </form>
+
+          <!-- Output Section -->
+          <div class="output-section" id="outputSection" style="display: none;">
+            <div class="output-label">🎬 Your Cinematic Prompt:</div>
+            <div class="prompt-output" id="promptOutput"></div>
+            <button class="copy-btn" onclick="copiarPrompt(this)">Copy Prompt</button>
+          </div>
+        </div>
+
+        <script src="{{ 'prompt-generator.js' | asset_url }}" defer></script>
+      </div>
+    </div>
+  </div>
+</div>
